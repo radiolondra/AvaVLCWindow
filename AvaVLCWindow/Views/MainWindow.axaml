@@ -4,40 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:vlcsharp="clr-namespace:LibVLCSharp.Avalonia;assembly=LibVLCSharp.Avalonia"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="AvaVLCWindow.Views.MainWindow"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        x:Class="AvaVLCWindow.Views.MainWindow"		
 		xmlns:controls="using:AvaVLCWindow.Views"
         Icon="/Assets/avalonia-logo.ico"
 		WindowStartupLocation="CenterScreen"
         Title="Avalonia VLC Player embedded in Window">
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
-
-	<Grid 
-		RowDefinitions="Auto,*" 
-		ColumnDefinitions="*">
-
-		<controls:Controls 
-			Grid.Row="0" 
-			Grid.Column="0"/>
-
 		<Panel
-			Margin="10"
-			Grid.Row="1"
-			Grid.Column="0"
-			Background="Blue"
 			HorizontalAlignment="Stretch"
-			VerticalAlignment="Stretch"			 
+			VerticalAlignment="Stretch"
 			Name="PanelView">
 
 			<vlcsharp:VideoView
-				Margin="10"
 				HorizontalAlignment="Stretch"
 				VerticalAlignment="Stretch"
 				x:Name="VideoViewer">
+
+				<!-- Content -->
+				<Panel
+					VerticalAlignment="Bottom"
+					Opacity="0.8"
+					Background="Gray">
+					<controls:PlayerControls/>
+				</Panel>
+
 			</vlcsharp:VideoView>
 		</Panel>
-	</Grid>
-</Window>
+
+		<!--
+		<Panel 
+			VerticalAlignment="Bottom"
+			Opacity="0.8"
+			Background="Gray">						
+			<controls:PlayerControls/>
+		</Panel>
+		-->
+		
+	</Window>

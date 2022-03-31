@@ -18,7 +18,10 @@ namespace AvaVLCWindow
         public static AppBuilder BuildAvaloniaApp()
             => AppBuilder.Configure<App>()
                 .UsePlatformDetect()
-                .LogToTrace()
+                //.With(new Win32PlatformOptions
+                //{
+                //    AllowEglInitialization = false
+                //})                
                 .UseReactiveUI();
     }
 }
