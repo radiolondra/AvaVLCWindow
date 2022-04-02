@@ -1,4 +1,6 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Platform;
 using LibVLCSharp.Shared;
 using ReactiveUI;
 using System;
@@ -18,8 +20,16 @@ namespace AvaVLCWindow.ViewModels
         {
             if (!Avalonia.Controls.Design.IsDesignMode)
             {
-                var libVlcDirectoryPath = Path.Combine(Environment.CurrentDirectory, "libvlc", IsWin64() ? "win-x64" : "win-x86");
-                Core.Initialize(libVlcDirectoryPath);
+                var os = AvaloniaLocator.Current.GetService<IRuntimePlatform>().GetRuntimeInfo().OperatingSystem;
+                //if (os == OperatingSystemType.WinNT)
+                //{
+                //    var libVlcDirectoryPath = Path.Combine(Environment.CurrentDirectory, "libvlc", IsWin64() ? "win-x64" : "win-x86");
+                //    Core.Initialize(libVlcDirectoryPath);
+                //}
+                //else
+                {
+                    Core.Initialize();
+                }
 
                 _libVLC = new LibVLC(
                     enableDebugLogs: true
