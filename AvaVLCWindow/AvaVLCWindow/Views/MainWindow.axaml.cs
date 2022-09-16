@@ -1,13 +1,13 @@
 using Avalonia.Controls;
 using Avalonia.Media;
 using AvaVLCWindow.ViewModels;
-using LibVLCSharp.Avalonia;
+using LibVLCSharp.Avalonia.Unofficial;
 
 namespace AvaVLCWindow.Views
 {
     public partial class MainWindow : Window
     {
-        private static MainWindow _this;
+        private static MainWindow? _this;
         private VideoView _videoViewer;
         
 
@@ -28,13 +28,14 @@ namespace AvaVLCWindow.Views
         }
 
         public static MainWindow GetInstance()
-        {
-            return _this;
+        {            
+            return _this;            
         }
 
         private void MainWindow_Opened(object? sender, System.EventArgs e)
         {
-            
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
             if (_videoViewer != null && viewModel.MediaPlayer != null)
             {               
                 _videoViewer.MediaPlayer = viewModel.MediaPlayer;                

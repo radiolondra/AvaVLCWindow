@@ -8,7 +8,7 @@ namespace AvaVLCWindow.Views
     public partial class PlayerControls : UserControl
     {
         public Panel _playerControl;
-        private static PlayerControls _this;
+        private static PlayerControls? _this;
         public PlayerControls()
         {
             InitializeComponent();

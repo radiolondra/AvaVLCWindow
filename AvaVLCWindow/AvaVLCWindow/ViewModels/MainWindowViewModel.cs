@@ -20,7 +20,7 @@ namespace AvaVLCWindow.ViewModels
         {
             if (!Avalonia.Controls.Design.IsDesignMode)
             {
-                var os = AvaloniaLocator.Current.GetService<IRuntimePlatform>().GetRuntimeInfo().OperatingSystem;
+                //var os = AvaloniaLocator.Current.GetService<IRuntimePlatform>().GetRuntimeInfo().OperatingSystem;
                 //if (os == OperatingSystemType.WinNT)
                 //{
                 //    var libVlcDirectoryPath = Path.Combine(Environment.CurrentDirectory, "libvlc", IsWin64() ? "win-x64" : "win-x86");
@@ -50,11 +50,18 @@ namespace AvaVLCWindow.ViewModels
         {
             if (_libVLC != null && MediaPlayer != null)
             {
+                //string[] Media_AdditionalOptions = {
+                //    $":avcodec-hw=any"
+                //};
+                string[] Media_AdditionalOptions = { };
+
                 using var media = new Media(
                     _libVLC, 
-                    new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
+                    new Uri("http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"),
+                    Media_AdditionalOptions
                     );
                 MediaPlayer.Play(media);
+                media.Dispose();
             }
         }
 
